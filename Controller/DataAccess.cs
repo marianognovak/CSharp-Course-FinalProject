@@ -22,10 +22,10 @@ namespace Controller
             command.Connection = connection;
         }
 
-        public void setQuery(string query)
+        public void setCommandText(string commandText)
         {
             command.CommandType = System.Data.CommandType.Text;
-            command.CommandText = query;
+            command.CommandText = commandText;
         }
 
         public void readData()
@@ -39,6 +39,24 @@ namespace Controller
             {
                 throw ex;
             }
+        }
+
+        public void nonQuery()
+        {
+            try
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void setParameters(string parameter, object value)
+        {
+            command.Parameters.AddWithValue(parameter, value);
         }
 
         public void closeConnection()

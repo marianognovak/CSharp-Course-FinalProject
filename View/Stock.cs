@@ -22,45 +22,60 @@ namespace View
 
         private void Stock_Load(object sender, EventArgs e)
         {
-
+            loadArticles();
         }
 
-        /*load*/
+        private void loadArticles()
+        {
+            ArticleController articleController = new ArticleController();
+            try
+            {
+                articleList = articleController.listArticles();
+                dgvStock.DataSource = articleList;
+                dgvStock.Columns["Description"].Visible = false;
+                dgvStock.Columns["ImageUrl"].Visible = false;
+                loadImage(articleList[0].ImageUrl);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
-        //ArticleController articleController = new ArticleController();
-        //    try
-        //    {
-        //        articleList = articleController.list();
-        //        dgvStock.DataSource = articleList;
-        //        dgvStock.Columns["Description"].Visible = false;
-        //        dgvStock.Columns["ImageUrl"].Visible = false;
-        //        pbArticles.Load(articleList[0].ImageUrl);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-   
-        /*addbutton*/
+        private void loadImage(string image)
+        {
+            try
+            {
+                pbArticles.Load(image);
+            }
+            catch (Exception ex)
+            {
+                pbArticles.Load("https://www.farmaciaaguacate.es/images/virtuemart/typeless/SinImagen_600x600.jpg");
+            }
+        }
 
-        //foreach (var item in Application.OpenForms)
-        //{
-        //    if (item.GetType() == typeof(AddArticle)) return;
-        //}
-        //AddArticle addArticle = new AddArticle();
-        //addArticle.ShowDialog();
+        private void dgvStock_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Article selected = (Article)dgvStock.CurrentRow.DataBoundItem;
+                loadImage(selected.ImageUrl);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
-        /*selectionchanged*/
-         
-        //try
-        //{
-        //    Article selected = (Article)dgvStock.CurrentRow.DataBoundItem;
-        //    pbArticles.Load(selected.ImageUrl);
-        //}
-        //catch (Exception ex)
-        //{
-        //    throw ex;
-        //}
-
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            foreach (var item in Application.OpenForms)
+            {
+                if (item.GetType() == typeof(AddArticle)) return;
+            }
+            AddArticle addArticle = new AddArticle();
+            addArticle.ShowDialog();
+            loadArticles();
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,12 +9,13 @@ using System.Threading.Tasks;
 namespace Model
 {
     public class Article
-    {
+    {   
         public Article()
         {
             Brand = new Brand();
             Category = new Category();
         }
+
         [DisplayName("Código")]
         public string Code { get; set; }
 
@@ -30,5 +32,8 @@ namespace Model
         public Category Category { get; set; }
 
         public string ImageUrl { get; set; }
+
+        [DisplayName("Precio")]
+        public Decimal Price { get; set; }
     }
 }
