@@ -89,6 +89,7 @@
             this.cbxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxCategory.FormattingEnabled = true;
             this.cbxCategory.Location = new System.Drawing.Point(96, 126);
+            this.cbxCategory.MinimumSize = new System.Drawing.Size(123, 0);
             this.cbxCategory.Name = "cbxCategory";
             this.cbxCategory.Size = new System.Drawing.Size(123, 21);
             this.cbxCategory.TabIndex = 4;
@@ -156,6 +157,7 @@
             this.txtbImageUrl.Name = "txtbImageUrl";
             this.txtbImageUrl.Size = new System.Drawing.Size(272, 20);
             this.txtbImageUrl.TabIndex = 5;
+            this.txtbImageUrl.Leave += new System.EventHandler(this.txtbImageUrl_Leave);
             // 
             // txtbPrice
             // 
@@ -191,6 +193,7 @@
             this.pbAdd.Location = new System.Drawing.Point(12, 221);
             this.pbAdd.Name = "pbAdd";
             this.pbAdd.Size = new System.Drawing.Size(207, 207);
+            this.pbAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbAdd.TabIndex = 16;
             this.pbAdd.TabStop = false;
             // 
@@ -216,6 +219,10 @@
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.lblCode);
+            this.Enabled = false;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AddArticle";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Agregar artículo";

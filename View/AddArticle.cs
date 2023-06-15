@@ -10,36 +10,52 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model;
 using System.Data.SqlTypes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace View
 {
     public partial class AddArticle : Form
     {
+        private Article article=null;
         public AddArticle()
         {
             InitializeComponent();
         }
 
+        public AddArticle(Article article)
+        {
+            InitializeComponent();
+            this.article = article;
+        }
+
         private void AddArticle_Load(object sender, EventArgs e)
         {
             BrandController brandController = new BrandController();
+            CategoryController categoryController = new CategoryController();
             try
             {
                 cbxBrand.DataSource = brandController.list();
+                cbxBrand.ValueMember = "Id";
+                cbxBrand.DisplayMember = "Name";
+                cbxCategory.DataSource = categoryController.list();
+                cbxCategory.ValueMember = "Id";
+                cbxCategory.DisplayMember = "Name";
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
 
-            CategoryController categoryController = new CategoryController();
-            try
+            if (article!=null)
             {
-                cbxCategory.DataSource = categoryController.list();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
+                txtbCode.Text = article.Code;
+                txtbName.Text = article.Name;
+                txtbDescription.Text = article.Description;
+                txtbImageUrl.Text = article.ImageUrl;
+                loadImage(article.ImageUrl);
+                txtbPrice.Text = article.Price.ToString();
+                cbxBrand.SelectedValue = article.Brand.Id;
+                cbxCategory.SelectedValue = article.Category.Id;
             }
         }
 
@@ -50,21 +66,30 @@ namespace View
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            Article newArticle = new Article();
             ArticleController articleController = new ArticleController();
 
             try
             {
-                newArticle.Code=txtbCode.Text;
-                newArticle.Name=txtbName.Text;
-                newArticle.Description=txtbDescription.Text;
-                newArticle.Brand = (Brand)cbxBrand.SelectedItem;
-                newArticle.Category = (Category)cbxCategory.SelectedItem;
-                newArticle.ImageUrl=txtbImageUrl.Text;
-                newArticle.Price=Decimal.Parse(txtbPrice.Text);
+                if (article == null) article = new Article();
+                article.Code=txtbCode.Text;
+                article.Name=txtbName.Text;
+                article.Description=txtbDescription.Text;
+                article.Brand = (Brand)cbxBrand.SelectedItem;
+                article.Category = (Category)cbxCategory.SelectedItem;
+                article.ImageUrl=txtbImageUrl.Text;
+                article.Price=Decimal.Parse(txtbPrice.Text);
 
-                articleController.addArticle(newArticle);
-                MessageBox.Show("Artículo agregado");
+                if (article.Id!=0)
+                {
+                    articleController.modifyArticle(article);
+                    MessageBox.Show("Artículo modificado");
+                }
+                else
+                {
+                    articleController.addArticle(article);
+                    MessageBox.Show("Artículo agregado");
+                }
+
                 Close();
             }
             catch (Exception ex)
@@ -72,5 +97,20 @@ namespace View
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private void txtbImageUrl_Leave(object sender, EventArgs e) => loadImage(txtbImageUrl.Text);
+
+        private void loadImage(string image)
+        {
+            try
+            {
+                pbAdd.Load(image);
+            }
+            catch (Exception ex)
+            {
+                pbAdd.Load("https://www.farmaciaaguacate.es/images/virtuemart/typeless/SinImagen_600x600.jpg");
+            }
+        }
+        
     }
 }
