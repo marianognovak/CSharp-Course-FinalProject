@@ -16,7 +16,8 @@ namespace View
 {
     public partial class AddArticle : Form
     {
-        private Article article=null;
+        private Article article = null;
+        public bool hasToRefresh { get; set; }
         public AddArticle()
         {
             InitializeComponent();
@@ -26,10 +27,12 @@ namespace View
         {
             InitializeComponent();
             this.article = article;
+            Text = "Modificar artículo";
         }
 
         private void AddArticle_Load(object sender, EventArgs e)
         {
+            hasToRefresh = false;
             BrandController brandController = new BrandController();
             CategoryController categoryController = new CategoryController();
             try
@@ -66,36 +69,39 @@ namespace View
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            ArticleController articleController = new ArticleController();
-
-            try
+            if (isCompleted())
             {
-                if (article == null) article = new Article();
-                article.Code=txtbCode.Text;
-                article.Name=txtbName.Text;
-                article.Description=txtbDescription.Text;
-                article.Brand = (Brand)cbxBrand.SelectedItem;
-                article.Category = (Category)cbxCategory.SelectedItem;
-                article.ImageUrl=txtbImageUrl.Text;
-                article.Price=Decimal.Parse(txtbPrice.Text);
-
-                if (article.Id!=0)
+                hasToRefresh = true;
+                ArticleController articleController = new ArticleController();
+                try
                 {
-                    articleController.modifyArticle(article);
-                    MessageBox.Show("Artículo modificado");
-                }
-                else
-                {
-                    articleController.addArticle(article);
-                    MessageBox.Show("Artículo agregado");
-                }
+                    if (article == null) article = new Article();
+                    article.Code = txtbCode.Text;
+                    article.Name = txtbName.Text;
+                    article.Description = txtbDescription.Text;
+                    article.Brand = (Brand)cbxBrand.SelectedItem;
+                    article.Category = (Category)cbxCategory.SelectedItem;
+                    article.ImageUrl = txtbImageUrl.Text;
+                    article.Price = Decimal.Parse(txtbPrice.Text);
 
-                Close();
+                    if (article.Id != 0)
+                    {
+                        articleController.modifyArticle(article);
+                        MessageBox.Show("Artículo modificado.");
+                    }
+                    else
+                    {
+                        articleController.addArticle(article);
+                        MessageBox.Show("Artículo agregado.");
+                    }
+                    Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            else MessageBox.Show("No se han completado todos los campos. Por favor, vuelva a intentarlo.");
         }
 
         private void txtbImageUrl_Leave(object sender, EventArgs e) => loadImage(txtbImageUrl.Text);
@@ -106,11 +112,35 @@ namespace View
             {
                 pbAdd.Load(image);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 pbAdd.Load("https://www.farmaciaaguacate.es/images/virtuemart/typeless/SinImagen_600x600.jpg");
             }
         }
-        
+
+        private bool isCompleted()
+        {
+            bool isCompleted = true;
+            if (!labelColor(lblCode, txtbCode)) isCompleted = false;
+            if (!labelColor(lblName, txtbName)) isCompleted = false;
+            if (!labelColor(lblDescription, txtbDescription)) isCompleted = false;
+            if (!labelColor(lblImageUrl, txtbImageUrl)) isCompleted = false;
+            if (!labelColor(lblPrice, txtbPrice)) isCompleted = false;
+            return isCompleted;
+        }
+
+        private bool labelColor(Label label, TextBox textBox)
+        {
+            if (string.IsNullOrEmpty(textBox.Text))
+            {
+                label.ForeColor = Color.Red;
+                return false;
+            }
+            else
+            {
+                label.ForeColor = Color.Black;
+                return true;
+            }
+        }
     }
 }

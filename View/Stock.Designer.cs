@@ -40,8 +40,9 @@
             this.cbxCriterion = new System.Windows.Forms.ComboBox();
             this.txtbFilter = new System.Windows.Forms.TextBox();
             this.grbxFilter = new System.Windows.Forms.GroupBox();
-            this.btnFilter = new System.Windows.Forms.Button();
             this.btnResetFilter = new System.Windows.Forms.Button();
+            this.btnFilter = new System.Windows.Forms.Button();
+            this.btnSeeDetails = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbArticles)).BeginInit();
             this.grbxFilter.SuspendLayout();
@@ -61,7 +62,7 @@
             this.dgvStock.MultiSelect = false;
             this.dgvStock.Name = "dgvStock";
             this.dgvStock.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvStock.Size = new System.Drawing.Size(752, 417);
+            this.dgvStock.Size = new System.Drawing.Size(752, 473);
             this.dgvStock.StandardTab = true;
             this.dgvStock.TabIndex = 10;
             this.dgvStock.TabStop = false;
@@ -69,9 +70,9 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(770, 318);
+            this.btnAdd.Location = new System.Drawing.Point(770, 374);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(300, 53);
             this.btnAdd.TabIndex = 1;
@@ -81,9 +82,9 @@
             // 
             // btnModify
             // 
-            this.btnModify.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnModify.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnModify.Location = new System.Drawing.Point(770, 377);
+            this.btnModify.Location = new System.Drawing.Point(770, 433);
             this.btnModify.Name = "btnModify";
             this.btnModify.Size = new System.Drawing.Size(300, 53);
             this.btnModify.TabIndex = 2;
@@ -93,9 +94,9 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(770, 436);
+            this.btnDelete.Location = new System.Drawing.Point(770, 492);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(300, 53);
             this.btnDelete.TabIndex = 3;
@@ -173,6 +174,7 @@
             // 
             this.txtbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtbFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtbFilter.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtbFilter.Location = new System.Drawing.Point(372, 23);
             this.txtbFilter.Name = "txtbFilter";
             this.txtbFilter.Size = new System.Drawing.Size(173, 20);
@@ -189,23 +191,12 @@
             this.grbxFilter.Controls.Add(this.cbxCriterion);
             this.grbxFilter.Controls.Add(this.lblCriterion);
             this.grbxFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grbxFilter.Location = new System.Drawing.Point(12, 9);
+            this.grbxFilter.Location = new System.Drawing.Point(12, 6);
             this.grbxFilter.Name = "grbxFilter";
             this.grbxFilter.Size = new System.Drawing.Size(752, 60);
             this.grbxFilter.TabIndex = 0;
             this.grbxFilter.TabStop = false;
             this.grbxFilter.Text = "Filtrar";
-            // 
-            // btnFilter
-            // 
-            this.btnFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFilter.Location = new System.Drawing.Point(566, 15);
-            this.btnFilter.Name = "btnFilter";
-            this.btnFilter.Size = new System.Drawing.Size(87, 34);
-            this.btnFilter.TabIndex = 3;
-            this.btnFilter.Text = "Filtrar";
-            this.btnFilter.UseVisualStyleBackColor = true;
-            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
             // btnResetFilter
             // 
@@ -218,11 +209,35 @@
             this.btnResetFilter.UseVisualStyleBackColor = true;
             this.btnResetFilter.Click += new System.EventHandler(this.btnResetFilter_Click);
             // 
+            // btnFilter
+            // 
+            this.btnFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFilter.Location = new System.Drawing.Point(566, 15);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(87, 34);
+            this.btnFilter.TabIndex = 3;
+            this.btnFilter.Text = "Filtrar";
+            this.btnFilter.UseVisualStyleBackColor = true;
+            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
+            // 
+            // btnSeeDetails
+            // 
+            this.btnSeeDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSeeDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSeeDetails.Location = new System.Drawing.Point(770, 315);
+            this.btnSeeDetails.Name = "btnSeeDetails";
+            this.btnSeeDetails.Size = new System.Drawing.Size(300, 53);
+            this.btnSeeDetails.TabIndex = 11;
+            this.btnSeeDetails.Text = "Ver detalle";
+            this.btnSeeDetails.UseVisualStyleBackColor = true;
+            this.btnSeeDetails.Click += new System.EventHandler(this.btnSeeDetails_Click);
+            // 
             // Stock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1082, 499);
+            this.ClientSize = new System.Drawing.Size(1082, 550);
+            this.Controls.Add(this.btnSeeDetails);
             this.Controls.Add(this.grbxFilter);
             this.Controls.Add(this.pbArticles);
             this.Controls.Add(this.btnDelete);
@@ -258,5 +273,6 @@
         private System.Windows.Forms.GroupBox grbxFilter;
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.Button btnResetFilter;
+        private System.Windows.Forms.Button btnSeeDetails;
     }
 }

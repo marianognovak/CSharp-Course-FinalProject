@@ -30,7 +30,7 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tsmStock = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmCheckStock = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmArticleList = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,17 +47,17 @@
             // tsmStock
             // 
             this.tsmStock.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmCheckStock});
+            this.tsmArticleList});
             this.tsmStock.Name = "tsmStock";
             this.tsmStock.Size = new System.Drawing.Size(48, 20);
             this.tsmStock.Text = "Stock";
             // 
-            // tsmCheckStock
+            // tsmArticleList
             // 
-            this.tsmCheckStock.Name = "tsmCheckStock";
-            this.tsmCheckStock.Size = new System.Drawing.Size(180, 22);
-            this.tsmCheckStock.Text = "Consultar stock";
-            this.tsmCheckStock.Click += new System.EventHandler(this.tsmCheckStock_Click);
+            this.tsmArticleList.Name = "tsmArticleList";
+            this.tsmArticleList.Size = new System.Drawing.Size(176, 22);
+            this.tsmArticleList.Text = "Listado de artículos";
+            this.tsmArticleList.Click += new System.EventHandler(this.tsmCheckStock_Click);
             // 
             // MainScreen
             // 
@@ -67,7 +67,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainScreen";
-            this.Text = "Sistema";
+            this.Text = "Catálogo de artículos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -80,7 +80,7 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tsmStock;
-        private System.Windows.Forms.ToolStripMenuItem tsmCheckStock;
+        private System.Windows.Forms.ToolStripMenuItem tsmArticleList;
     }
 }
 

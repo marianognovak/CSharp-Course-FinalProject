@@ -45,6 +45,7 @@
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.pbAdd = new System.Windows.Forms.PictureBox();
+            this.lblMandatoryFields = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbAdd)).BeginInit();
             this.SuspendLayout();
             // 
@@ -197,11 +198,21 @@
             this.pbAdd.TabIndex = 16;
             this.pbAdd.TabStop = false;
             // 
+            // lblMandatoryFields
+            // 
+            this.lblMandatoryFields.AutoSize = true;
+            this.lblMandatoryFields.Location = new System.Drawing.Point(193, 433);
+            this.lblMandatoryFields.Name = "lblMandatoryFields";
+            this.lblMandatoryFields.Size = new System.Drawing.Size(175, 13);
+            this.lblMandatoryFields.TabIndex = 17;
+            this.lblMandatoryFields.Text = "(Todos los campos son obligatorios)";
+            // 
             // AddArticle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(380, 437);
+            this.ClientSize = new System.Drawing.Size(373, 455);
+            this.Controls.Add(this.lblMandatoryFields);
             this.Controls.Add(this.pbAdd);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConfirm);
@@ -219,7 +230,6 @@
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.lblCode);
-            this.Enabled = false;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -252,5 +262,6 @@
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.PictureBox pbAdd;
+        private System.Windows.Forms.Label lblMandatoryFields;
     }
 }

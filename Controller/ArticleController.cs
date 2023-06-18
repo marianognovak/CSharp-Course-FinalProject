@@ -58,16 +58,16 @@ namespace Controller
             switch (field)
             {
                 case "Id":
-                    query += "a.Id " + filterQuery(criterion, filter);
+                    query += filterQuery("a.Id ", criterion, filter);
                     break;
                 case "Código":
-                    query += "Codigo " + filterQuery(criterion, filter);
+                    query += filterQuery("Codigo ", criterion, filter);
                     break;
                 case "Nombre":
-                    query += "Nombre " + filterQuery(criterion, filter);
+                    query += filterQuery("Nombre ", criterion, filter);
                     break;
                 case "Precio":
-                    query += "Precio " + filterQuery(criterion, filter);
+                    query += filterQuery("Precio ", criterion, filter);
                     break;
                 case "Marca":
                     query += "m.Descripcion = '" + criterion + "'";
@@ -103,7 +103,6 @@ namespace Controller
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
@@ -112,28 +111,27 @@ namespace Controller
             }
         }
 
-        private string filterQuery(string criterion, string filter)
+        private string filterQuery(string query, string criterion, string filter)
         {
-            string query = "";
             switch (criterion)
             {
                 case "Menor a":
-                    query = "< '" + filter + "'";
+                    query += "< '" + filter + "'";
                     break;
                 case "Igual a":
-                    query = "= '" + filter + "'";
+                    query += "= '" + filter + "'";
                     break;
                 case "Mayor a":
-                    query = "> '" + filter + "'";
+                    query += "> '" + filter + "'";
                     break;
                 case "Empieza con":
-                    query = "like '" + filter + "%'";
+                    query += "like '" + filter + "%'";
                     break;
                 case "Contiene":
-                    query = "like '%" + filter + "%'";
+                    query += "like '%" + filter + "%'";
                     break;
                 case "Termina con":
-                    query = "like '%" + filter + "'";
+                    query += "like '%" + filter + "'";
                     break;
             }
             return query;
